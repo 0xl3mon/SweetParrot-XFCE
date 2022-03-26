@@ -1,22 +1,19 @@
 #---------------------
-#    Path 
+#    Path
 #---------------------
-export PATH=/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+export PATH=/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/.local/bin:/home/l3mon/.local/bin
 
 # Enable Powerlevel10k instant prompt. Should stay at the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#--------------------
-#   Oh-my-Zsh
-#--------------------
-export ZSH=$HOME/.config/oh-my-zsh             	  # Path
-source $ZSH/oh-my-zsh.sh          		  # Source
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#757575'	  # Auto-Suggestion Color
+# Auto-Suggestions Color
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#757575'
 
 # Fzf
-export FZF_DEFAULT_OPS="--extended"
+#FZF_DEFAULT_OPS="--extended"
+FZF_DEFAULT_COMMAND='find .'
 
 #---------------------
 #  Env Variables Zsh
@@ -25,7 +22,22 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# Git Autoload
+#------------------
+#	Oh My Zsh
+#------------------
+
+# Path to yout oh-my-zsh installation
+export ZSH="$HOME/.oh-my-zsh"
+
+# Uncomment the following line if pasting is messed up
+DISABLE_MAGIC_FUNCTIONS="true"
+
+# Plugins
+plugins=(sudo)
+
+source $ZSH/oh-my-zsh.sh
+
+# Auto-Completion System
 autoload -U compinit && compinit
 
 # Golang Path
@@ -47,11 +59,21 @@ alias cat="bat --paging never -p --theme 'Monokai Extended Origin'"
 alias grep="grep --color=auto"
 alias man='/usr/bin/batman'
 
+
+# HTB
+alias htb-vpn='openvpn /home/l3mon/Descargas/lab_rafster.ovpn'
+
 # Burpsuite
-alias burp=""
+alias burp="/opt/burpsuite_pro_v2022.2.2/loader-burp.sh"
 
 # One Liner
 alias oneliner="one-lin3r -x list"
+
+# Config
+alias zshconfig='nano ~/.zshrc'
+
+# Goland
+alias goland='/opt/GoLand-2021.1.3/bin/goland.sh &>/dev/null & ; disown'
 
 #---------------------
 #    Bindkey
@@ -119,7 +141,7 @@ function mkd() {
     function getlanding() {
         cd /tmp ; randdir="$(openssl rand -hex 6)" ; mkdir $randdir ; cd $randdir
         wget --wait=2 --level=inf --limit-rate=320K --recursive --page-requisites --user-agent=Mozilla --no-parent --convert-links --adjust-extension --no-clobber -e robots=off "$1"
-        ls ++ */*
+        ls */*
     }
 
 # Random char
@@ -132,14 +154,16 @@ function mkd() {
         aria2c -x 16 -j 64 -s 64 -c $1
     }
 
+
 # Clip
     function cb() {
         cat "$1" | xclip -selection c
     }
+
 # Speed Test 
     function speedtest() {
         curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
-    }    
+    }
 
 # Upload
     function upl() {
@@ -149,6 +173,7 @@ function mkd() {
 # Go To home
 cd ~
 
+# Source powerlvl-theme
 source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -157,5 +182,10 @@ source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 # Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Pezor
+export PATH=$PATH:~/go/bin/:/opt/PEzor:/opt/PEzor/deps/donut/:/opt/PEzor/deps/wclang/_prefix_PEzor_/bin/
+
+# Created by `pipx` on 2022-03-10 15:59:25
+export PATH="$PATH:/root/.local/bin"
 
 
