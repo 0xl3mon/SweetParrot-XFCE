@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-# Colors
-bold="\e[1m"
-reset="\e[0m"
+#icon
+icon="/home/l3mon/.local/bin/icons/cave.png"
 
 # Ip
-ip=$(/sbin/ifconfig ens33 | grep -w inet | awk '{print $2}')
+local_ip=$(/sbin/ifconfig | grep "ens[0-9][0-9]" -A 1 | grep inet | awk '{print $2}' | tr -d '\n')
 
-echo -ne "$ip"
+info="<img>${icon}</img>"
+info+="<txt>${local_ip}</txt>"
+
+echo -ne "${info}"
