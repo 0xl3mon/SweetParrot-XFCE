@@ -1,0 +1,33 @@
+[Desktop Entry]
+Name=Thunar File Manager
+Name[es]=Gestor de archivos Thunar
+Comment=Browse the filesystem with the file manager
+Comment[es]=Navegue por el sistema de archivos con el gestor de archivos
+GenericName=File Manager
+GenericName[es]=Gestor de archivos
+Keywords=file manager;explorer;finder;browser;folders;directory;directories;partitions;drives;network;devices;rename;move;copy;delete;permissions;home;trash;
+Keywords[es]=gestor;archivos;explorador;buscador;navegador;carpetas;directorios;particiones;unidades;red;dispositivos;renombrar;mover;copiar;borrar;permisos;inicio;papelera;
+Exec=thunar %F
+Icon=org.xfce.thunar
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=System;Utility;Core;GTK;FileTools;FileManager;
+MimeType=inode/directory;
+Actions=open-home;open-computer;open-trash;
+X-XFCE-Source=file:///usr/share/applications/thunar.desktop
+
+[Desktop Action open-home]
+Name=Home
+Name[es]=Carpeta personal
+Exec=thunar %U
+
+[Desktop Action open-computer]
+Name=Computer
+Name[es]=Equipo
+Exec=thunar computer:///
+
+[Desktop Action open-trash]
+Name=Trash
+Name[es]=Papelera
+Exec=thunar trash:///
