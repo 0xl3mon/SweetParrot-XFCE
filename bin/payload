@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+search=$(find /usr/share/payloadsallthethings -type f  | fzf --height 70% )
+/bin/bat --theme gruvbox-dark "$search" & 
+bat_pid="$!"
+wait "$bat_pid"
+echo -e "\e[92m[\e[94m+\e[92m]\e[0m Path Coppied to clipboard\!"
+echo "\"$search\"" | xclip -sel clip
