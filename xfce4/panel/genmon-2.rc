@@ -1,6 +1,0 @@
-Command=sh -c /home/l3mon/.local/bin/local-ip.sh
-UseLabel=0
-Text=🏠
-UpdatePeriod=30000
-Font=agave Nerd Font Bold 11
-

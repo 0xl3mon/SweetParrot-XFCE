@@ -1,6 +1,0 @@
-Command=/home/l3mon/.local/bin/ovpn.sh
-UseLabel=0
-Text=OPENVPN
-UpdatePeriod=30000
-Font=agave Nerd Font Bold 12
-
