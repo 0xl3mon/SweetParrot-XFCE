@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly icon_dir="/home/l3mon/.local/bin/icons/htb.png"
+readonly icon_dir="/home/${USER}/.local/bin/icons/htb.png"
 readonly ip_vpn="$(/sbin/ifconfig | grep 'tun[0-9]' -A 1 | grep inet | awk '{print $2}')"
 
 if [[ -z $ip_vpn ]] ; then
