@@ -55,7 +55,7 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #---------------------
 alias ls='lsd --group-dirs=first -l'
 alias ip='ip -c'
-alias cat="bat --paging never -p --theme 'Monokai Extended Origin'"
+alias cat="bat --paging never -p --theme 'gruvbox-dark'"
 alias grep="grep --color=auto"
 alias man='/usr/bin/batman'
 
