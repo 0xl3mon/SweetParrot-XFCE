@@ -108,7 +108,7 @@ function mkd() {
         }
 
 # Wifi Pentest 
-    function monitor-init() {
+function monitor-init() {
         airmon-ng start wlan0 && echo -e "\n[+] Enabling mode Monitor"
         sleep 0.5
         (killall wpa_supplicant 2>/dev/null) && echo -e "\n[+] Killed Process dhclient, wpa_supplicant"
@@ -120,7 +120,7 @@ function mkd() {
         ifconfig wlan0mon up  && echo -e "\n[+]Network Interface: Up"
     }
 
-    function close-monitor() {
+function close-monitor() {
         ip link set wlan0mon down  && echo -e "\n[+] Network interface : Down"
         sleep  0.5
         macchanger -p wlan0mon && echo -e "\n[+] Restarting default Mac"
@@ -131,48 +131,44 @@ function mkd() {
     }
 
 # Obfuzcate
-    function bmcs() {
+function bmcs() {
         return="$(pwd)" ; [[ -z "$(ls | grep .sln)" ]] && break || xbuild /p:Configuration=Release /verbosity:minimal /nologo | tail -n+2
         mkdir /root/xbuilds &> /dev/null ; cp $(find . -name "*.exe" | xargs -L1 ls++ | head -n1) /root/xbuilds/ ; cd /root/xbuilds ; app="$(ls *.exe -1t | head -n1)"
         cd /usr/local/bin/net-obfuscate ; mono NET-Obfuscate.exe --in-file /root/xbuilds/"$app" ; cd $return ; ls++ -1t /root/xbuilds/
     }
 
 # Getlanding
-    function getlanding() {
+function getlanding() {
         cd /tmp ; randdir="$(openssl rand -hex 6)" ; mkdir $randdir ; cd $randdir
         wget --wait=2 --level=inf --limit-rate=320K --recursive --page-requisites --user-agent=Mozilla --no-parent --convert-links --adjust-extension --no-clobber -e robots=off "$1"
         ls */*
     }
 
 # Random char
-    function rnd() {
+function rnd() {
         echo $(tr -dc 'A-Z0-9a-z' < /dev/urandom | head -c $1)
     }
 
 # Aria2c
-    function dn() {
+function dn() {
         aria2c -x 16 -j 64 -s 64 -c $1
     }
 
 
 # Clip
-    function cb() {
+function cb() {
         cat "$1" | xclip -selection c
     }
 
 # Speed Test 
-    function speedtest() {
+function speedtest() {
         curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
     }
 
 # Upload
-    function upl() {
+function upl() {
         result="$(curl -s --upload-file $1 $HOSTNAME:4466)" ; echo $result
     }
-
-
-# Go To home
-cd ~
 
 # Source powerlvl-theme
 source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
