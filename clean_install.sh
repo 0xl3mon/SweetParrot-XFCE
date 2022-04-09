@@ -80,7 +80,7 @@ function pimp_my_desktop() {
     sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.config/powerlevel10k
        
     #Fzf
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf~/.config/fzf/install --all --key-bindings --completion --no-update-rc
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf ; ~/.config/fzf/install --all --key-bindings --completion --no-update-rc
     sudo git clone --depth 1 https://github.com/junegunn/fzf.git /root/.config/fzf ; sudo /root/.config/fzf/install --all --key-bindings --completion --no-update-rc
     
     # nano rc
