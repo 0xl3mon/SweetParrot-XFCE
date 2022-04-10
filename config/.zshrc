@@ -60,9 +60,6 @@ alias grep="grep --color=auto"
 alias man='/usr/bin/batman'
 
 
-# HTB
-alias htb-vpn='openvpn /home/l3mon/Descargas/lab_rafster.ovpn'
-
 # Burpsuite
 alias burp="/opt/burpsuite_pro_v2022.2.2/loader-burp.sh"
 
