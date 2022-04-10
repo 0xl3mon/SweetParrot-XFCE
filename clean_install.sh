@@ -133,6 +133,7 @@ function pimp_my_desktop() {
     7z x config/xfce4.7z ; mv xfce4 ~/.config
     
     # Autostart
+    rm -rf ~/.cache/session ; rm -rf ~/.config/autostart 
     7z x config/autostart.7z ; mv autostart ~/.config
 
 } 
