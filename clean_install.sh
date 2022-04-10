@@ -240,9 +240,8 @@ function main(){
 
 if [[ "$EUID" != "0" ]] ; then
     main ; check_status
-    echo -e "\n${GREEN}[+]${RESET}${ORANGE} Sistema instalado correctamente ${RESET}"
-    echo -ne "\n${GREEN}[+]${RESET}${ORANGE} Desea instalar una memoria swap adicional? (y/n) : " 
-    read swap_reply 
+    echo -e "\n${GREEN}[+]${RESET}${ORANGE} Sistema instalado correctamente ${RESET}\n"
+    read -p "[+] Desea instalar una memoria swap adicional? (y/n) : " swap_reply 
     if [[ "$swap_reply" =~ (y|Y) ]] ; then
         creating_swap 
         sleep 5
