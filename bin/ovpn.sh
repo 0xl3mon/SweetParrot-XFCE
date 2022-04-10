@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-readonly icon_dir="/home/${USER}/.local/bin/icons/htb.png"
-readonly ip_vpn="$(/sbin/ifconfig | grep 'tun[0-9]' -A 1 | grep inet | awk '{print $2}')"
+readonly icon_dir="/home/${USER}/.local/bin/icons/skull-vpn.png"
+readonly ip_vpn="$(/sbin/ifconfig | grep 'tun[0-9]' -A 1 | grep inet | awk '{print $2}' | head -n 1)"
 
 if [[ -z $ip_vpn ]] ; then
 	info="<img>${icon_dir}</img>"
