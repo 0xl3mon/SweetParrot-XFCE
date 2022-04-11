@@ -233,7 +233,7 @@ function main(){
     sudo chattr -i /etc/resolv.conf
     pimp_my_desktop
     clipmenu
-    rofimoji
+    #rofimoji
     xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVirtual1/workspace0/last-image -s ~/.config/wallpapers/gasmask-skull.jpg
 }
 
