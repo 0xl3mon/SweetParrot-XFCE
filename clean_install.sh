@@ -169,7 +169,7 @@ function rofimoji(){
     cd "$temp_folder"
 
     sudo apt install suckless-tools rofi xdotool python3-pip -y
-    wget -nv --show-progress $(curl -sL "https://api.github.com/repos/fdw/rofimoji/releases/latest" |  grep "browser_download" | sed 's/\(".*"\): \(".*"\)/\2/' | tr -d '"' | sed 's/[[:space:]]//g')
+    wget -nv --show-progress $(curl -sL "https://api.github.com/repos/fdw/rofimoji/releases/latest" |  grep "browser_download" | awk '{print $2}' | tr -d \")
     python3 -m pip install rofimoji-*
 
     #rofi Theme
@@ -233,7 +233,7 @@ function main(){
     sudo chattr -i /etc/resolv.conf
     pimp_my_desktop
     clipmenu
-    #rofimoji
+    rofimoji
     xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVirtual1/workspace0/last-image -s ~/.config/wallpapers/gasmask-skull.jpg
 }
 
