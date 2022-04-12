@@ -154,15 +154,24 @@ function clipmenu(){
 
 
 function creating_swap(){
-    # creating swap space
-    sudo dd if=/dev/zero of=/swap2 bs=1024 count=1048576 
-    # Set Permissions
-    sudo chmod 600 /swap2
-    # Set up swap area
-    sudo mkswap /swap2
-    # Enable Swap Partition
-    sudo swapon /swap2
-    sudo bash -c 'echo "/swap2        swap    swap    defaults    0    0" >> /etc/fstab'
+    echo -ne "\n${GREEN}[+]${RESET}${ORANGE} Desea instalar una memoria swap adicional? (y/n) : " ;  read swap_reply
+    if [[ "$swap_reply" =~ (y|Y) ]] ; then
+        # creating swap space
+        sudo dd if=/dev/zero of=/swap2 bs=1024 count=1048576 
+        # Set Permissions
+        sudo chmod 600 /swap2
+        # Set up swap area
+        sudo mkswap /swap2
+        # Enable Swap Partition
+        sudo swapon /swap2
+        sudo bash -c 'echo "/swap2        swap    swap    defaults    0    0" >> /etc/fstab'
+        sleep 5
+        /sbin/shutdown --reboot now
+    else 
+        echo -e "${GREEN}Reiniciando el sistema${RESET}"
+        sleep 5
+        /sbin/shutdown --reboot now
+    fi 
 }
 
 function rofimoji(){
@@ -235,22 +244,14 @@ function main(){
     clipmenu
     rofimoji
     xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVirtual1/workspace0/last-image -s ~/.config/wallpapers/gasmask-skull.jpg
+    
 }
 
 
 if [[ "$EUID" != "0" ]] ; then
     main ; check_status
     echo -e "\n${GREEN}[+]${RESET}${ORANGE} Sistema instalado correctamente ${RESET}\n"
-    read -p "[+] Desea instalar una memoria swap adicional? (y/n) : " swap_reply 
-    if [[ "$swap_reply" =~ (y|Y) ]] ; then
-        creating_swap 
-        sleep 5
-        /sbin/shutdown --reboot now
-    else 
-        echo -e "${GREEN}Reiniciando el sistema${RESET}"
-        sleep 5
-        /sbin/shutdown --reboot now
-    fi 
+    creating_swap
 else
     echo -e "${RED}[x]${RESET}Error : ${ORANGE}Do not run the script as root${RESET}"
     exit 1
